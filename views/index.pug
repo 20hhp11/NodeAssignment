@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    if errors.length  
+        .alert.alert-danger
+            a.close(href='#', data-dismiss='alert', aria-label='close') ×
+            for error in errors
+                div=error.msg 
+    div.container-fluid.content
+        h1.mb-4 Sign up
+        form(method="POST" action="/signup")                
+            .row
+                .col-6
+                    input(type="text" name="firstname" id="firstname" class="form-control" placeholder="First Name" value= user.firstname autofocus)
+                .col-6
+                    input(type="text" name="lastname" id="lastname" class="form-control" placeholder="Last Name" value= user.lastname)
+            .row.mt-3 
+                .col-12
+                    div 
+                        input(type="text" name="email" id="email" class="form-control" placeholder="E-mail" value= user.email)
+                    div.mt-3.text-center
+                        input(type="password" name="password" id="password" class="form-control" placeholder="Password" value= user.password)
+                        label At least 8 characters 
+                    div.mt-3.text-center
+                        input(type="number" name="phoneNo" id="phoneNo" class="form-control" placeholder="Phone number" value= user.phoneNo)
+                        label Optional
+                    div.mt-3.form-check                
+                        input(type="checkbox" class="form-check-input" id="isSubscribed" name="isSubscribed" checked= user.isSubscribed)
+                        label(class="form-check-label" for="isSubscribed") Suscribe to our newsletter
+                    div.mt-5
+                        button(type="submit" class="btn btn-primary btn-block") Sign In 
